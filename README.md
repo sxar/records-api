@@ -16,7 +16,7 @@ one-off manual check (SSH onto the runner VM, not repeatable CI); only
 
 - `GET /record` — list all records
 - `GET /record/:id` — get one record
-- `POST /record` — create a record (`{ name, position, level }`)
+- `POST /record` — create a record (`{ name, position, seniority }`)
 - `PATCH /record/:id` — update a record
 - `DELETE /record/:id` — delete a record
 
