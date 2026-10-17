@@ -12,9 +12,17 @@ import { ObjectId } from "mongodb";
 const router = express.Router();
 
 // This section will help you get a list of all the records.
+// An optional ?position= query narrows the list to records whose position
+// contains the given text (case-insensitive).
 router.get("/", async (req, res) => {
   let collection = await db.collection("records");
-  let results = await collection.find({}).toArray();
+  let query = {};
+  const position = typeof req.query.position === "string" ? req.query.position.trim() : "";
+  if (position) {
+    const escaped = position.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    query.position = { $regex: escaped, $options: "i" };
+  }
+  let results = await collection.find(query).toArray();
   res.send(results).status(200);
 });
 
