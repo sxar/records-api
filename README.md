@@ -15,6 +15,7 @@ one-off manual check (SSH onto the runner VM, not repeatable CI); only
 ## Endpoints
 
 - `GET /record` — list all records
+  - `GET /record?position=<text>` — only records whose position contains `<text>` (case-insensitive)
 - `GET /record/:id` — get one record
 - `POST /record` — create a record (`{ name, position, level }`)
 - `PATCH /record/:id` — update a record
